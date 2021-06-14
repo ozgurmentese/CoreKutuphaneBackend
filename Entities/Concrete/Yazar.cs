@@ -4,9 +4,9 @@ namespace Entities.Concrete
 {
     public class Yazar : IEntity
     {
-        public int YazarNumarasi { get; set; }
-        public string YazarAd { get; set; }
-        public string YazarSoyad { get; set; }
+        public int Id { get; set; }
+        public string Ad { get; set; }
+        public string Soyad { get; set; }
 
     }
 

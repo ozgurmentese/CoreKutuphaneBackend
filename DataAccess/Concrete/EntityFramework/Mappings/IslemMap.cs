@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(x => x.Id).HasColumnName("islemno");
             builder.Property(x => x.OgrenciNumarasi).HasColumnName("ogrno");
-            builder.Property(x => x.KitapNumarasi).HasColumnName("kitapno");
+            builder.Property(x => x.KitapId).HasColumnName("kitapno");
             builder.Property(x => x.AlinanTarih).HasColumnName("atarih");
             builder.Property(x => x.VerilenTarih).HasColumnName("vtarih");
         }

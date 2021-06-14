@@ -16,19 +16,19 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<OgrenciManager>().As<IOgrenciServis>().SingleInstance();
+            builder.RegisterType<OgrenciManager>().As<IOgrenciService>().SingleInstance();
             builder.RegisterType<EfOgrenciDal>().As<IOgrenciDal>().SingleInstance();
 
-            builder.RegisterType<IslemManager>().As<IIslemServis>().SingleInstance();
+            builder.RegisterType<IslemManager>().As<IIslemService>().SingleInstance();
             builder.RegisterType<EfIslemDal>().As<IIslemDal>().SingleInstance();
 
-            builder.RegisterType<KitapManager>().As<IKitapServis>().SingleInstance();
+            builder.RegisterType<KitapManager>().As<IKitapService>().SingleInstance();
             builder.RegisterType<EfKitapDal>().As<IKitapDal>().SingleInstance();
 
-            builder.RegisterType<TurManager>().As<ITurServis>().SingleInstance();
+            builder.RegisterType<TurManager>().As<ITurService>().SingleInstance();
             builder.RegisterType<EfTurDal>().As<ITurDal>().SingleInstance();
 
-            builder.RegisterType<YazarManager>().As<IYazarServis>().SingleInstance();
+            builder.RegisterType<YazarManager>().As<IYazarService>().SingleInstance();
             builder.RegisterType<EfYazarDal>().As<IYazarDal>().SingleInstance();
 
 

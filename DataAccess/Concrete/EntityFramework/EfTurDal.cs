@@ -10,23 +10,23 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfTurDal : EfEntityRepositoryBase<Tur, KutuphaneContext>, ITurDal
     {
-        public List<KitapAdYazarTurGetir> TureGoreGetir2(int v)
+        public List<KitapAdYazarTurGetirDto> TureGoreGetir2(int v)
         {
             using (KutuphaneContext context = new KutuphaneContext())
             {
                 var result = from k in context.Kitaplar
                              join y in context.Yazarlar
-                             on k.YazarNumarasi equals y.YazarNumarasi
+                             on k.YazarId equals y.Id
                              join t in context.Turler
-                             on k.TurNumarasi equals t.Id
+                             on k.TurId equals t.Id
                              where t.Id == v
-                             select new KitapAdYazarTurGetir
+                             select new KitapAdYazarTurGetirDto
                              {
-                                 kitapadi = k.KitapAdi,
-                                 yazaradi = y.YazarAd,
-                                 turadi = t.TurAdi,
-                                 turno = t.Id,
-                                 yazarno = y.YazarNumarasi
+                                 KitapAdi = k.Ad,
+                                 YazarAdi = y.Ad,
+                                 TurAdi = t.Ad,
+                                 TurId = t.Id,
+                                 YazarId = y.Id
                              };
                 return result.ToList();
             }

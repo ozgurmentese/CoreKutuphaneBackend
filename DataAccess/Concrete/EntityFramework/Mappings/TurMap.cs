@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).HasColumnName("turno");
-            builder.Property(x => x.TurAdi).HasColumnName("turadi");
+            builder.Property(x => x.Ad).HasColumnName("turadi");
         }
     }
 

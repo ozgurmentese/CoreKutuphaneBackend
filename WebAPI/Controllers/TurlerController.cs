@@ -11,57 +11,63 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OgrencilerController : ControllerBase
+    public class TurlerController : ControllerBase
     {
-        readonly IOgrenciService _ogrenciServis;
+        readonly ITurService _turService;
 
-        public OgrencilerController(IOgrenciService ogrenciServis)
+        public TurlerController(ITurService turService)
         {
-            _ogrenciServis = ogrenciServis;
+            _turService = turService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _ogrenciServis.GetAll();
+            var result = _turService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("ogrencikitapgetir")]
-        public IActionResult OgrenciAdSoyadKitapGetir()
+        
+        [HttpGet("get")]
+        public IActionResult Get(int id)
         {
-            var result = _ogrenciServis.OgrenciAdSoyadKitapGetir();
-            return result.Success ? Ok(result) : (IActionResult)BadRequest(result);
+            var result = _turService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Ogrenci ogrenci)
+        public IActionResult Add(Tur tur)
         {
-            var result = _ogrenciServis.Add(ogrenci);
+            var result = _turService.Add(tur);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
+        
         [HttpPost("delete")]
-        public IActionResult Delete(Ogrenci ogrenci)
+        public IActionResult Delete(Tur tur)
         {
-            var result = _ogrenciServis.Delete(ogrenci);
+            var result = _turService.Delete(tur);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
+                
         [HttpPost("update")]
-        public IActionResult Update(Ogrenci ogrenci)
+        public IActionResult Update(Tur tur)
         {
-            var result = _ogrenciServis.Update(ogrenci);
+            var result = _turService.Update(tur);
             if (result.Success)
             {
                 return Ok(result);
@@ -69,15 +75,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("ogrencigetir")]
-        public IActionResult OgrenciGetir(string text)
+        [HttpGet("turegoregetir")]
+        public IActionResult TureGoreGetir(int id)
         {
-            var result = _ogrenciServis.OgrenciGetir(text);
+            var result = _turService.TureGoreGetir2(id);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
     }
 }

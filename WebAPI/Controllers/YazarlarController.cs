@@ -11,35 +11,41 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OgrencilerController : ControllerBase
+    public class YazarlarController : ControllerBase
     {
-        readonly IOgrenciService _ogrenciServis;
+        readonly IYazarService _yazarService;
 
-        public OgrencilerController(IOgrenciService ogrenciServis)
+        public YazarlarController(IYazarService yazarService)
         {
-            _ogrenciServis = ogrenciServis;
+            _yazarService = yazarService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _ogrenciServis.GetAll();
+            var result = _yazarService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("ogrencikitapgetir")]
-        public IActionResult OgrenciAdSoyadKitapGetir()
+        
+        [HttpGet("get")]
+        public IActionResult Get(int id)
         {
-            var result = _ogrenciServis.OgrenciAdSoyadKitapGetir();
-            return result.Success ? Ok(result) : (IActionResult)BadRequest(result);
+            var result = _yazarService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Ogrenci ogrenci)
+        public IActionResult Add(Yazar yazar)
         {
-            var result = _ogrenciServis.Add(ogrenci);
+            var result = _yazarService.Add(yazar);
             if (result.Success)
             {
                 return Ok(result);
@@ -48,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Ogrenci ogrenci)
+        public IActionResult Delete(Yazar yazar)
         {
-            var result = _ogrenciServis.Delete(ogrenci);
+            var result = _yazarService.Delete(yazar);
             if (result.Success)
             {
                 return Ok(result);
@@ -59,9 +65,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Ogrenci ogrenci)
+        public IActionResult Update(Yazar yazar)
         {
-            var result = _ogrenciServis.Update(ogrenci);
+            var result = _yazarService.Update(yazar);
             if (result.Success)
             {
                 return Ok(result);
@@ -69,10 +75,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("ogrencigetir")]
-        public IActionResult OgrenciGetir(string text)
+        [HttpGet("yazaragoregetir")]
+        public IActionResult YazaraGoreGetir(int id)
         {
-            var result = _ogrenciServis.OgrenciGetir(text);
+            var result = _yazarService.YazaraGoreGetir2(id);
             if (result.Success)
             {
                 return Ok(result);

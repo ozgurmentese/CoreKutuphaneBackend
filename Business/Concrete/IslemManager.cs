@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class IslemManager : IIslemServis
+    public class IslemManager : IIslemService
     {
         IIslemDal _islemServis;
         public IslemManager(IIslemDal islemServis)

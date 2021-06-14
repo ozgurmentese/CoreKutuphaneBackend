@@ -9,7 +9,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfOgrenciDal : EfEntityRepositoryBase<Ogrenci, KutuphaneContext>, IOgrenciDal
     {
-        public List<OgrenciIslemKitapTablolari> OgrenciAdSoyadKitapGetir()
+        public List<OgrenciIslemKitapTablolariDto> OgrenciAdSoyadKitapGetir()
         {
 
             //select O.ograd,O.ogrsoyad,K.kitapadi
@@ -23,12 +23,12 @@ namespace DataAccess.Concrete.EntityFramework
                              join i in context.Islemler
                              on o.Numarasi equals i.Id
                              join k in context.Kitaplar
-                             on i.KitapNumarasi equals k.KitapNumarasi
-                             select new OgrenciIslemKitapTablolari
+                             on i.KitapId equals k.Id
+                             select new OgrenciIslemKitapTablolariDto
                              {
-                                 ograd = o.Adi,
-                                 ogrsoyad = o.Soyadi,
-                                 kitapadi = k.KitapAdi
+                                 Ad = o.Adi,
+                                 SoyAd = o.Soyadi,
+                                 KitapAdi = k.Ad
                              };
                 return result.ToList();
             }

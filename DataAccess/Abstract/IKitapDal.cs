@@ -7,6 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface IKitapDal : IEntityRepository<Kitap>
     {
-        List<KitapAdYazarTurGetir> KitapYazarTurGetir();
+        List<KitapAdYazarTurGetirDto> KitapYazarTurGetir();
     }
 }

@@ -7,6 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface ITurDal : IEntityRepository<Tur>
     {
-        List<KitapAdYazarTurGetir> TureGoreGetir2(int v);
+        List<KitapAdYazarTurGetirDto> TureGoreGetir2(int v);
     }
 }

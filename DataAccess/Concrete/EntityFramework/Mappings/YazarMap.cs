@@ -10,10 +10,10 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.ToTable(@"Yazarlar", @"dbo");
 
-            builder.HasKey(x => x.YazarNumarasi);
-            builder.Property(x => x.YazarNumarasi).HasColumnName("yazarno");
-            builder.Property(x => x.YazarAd).HasColumnName("yazarad");
-            builder.Property(x => x.YazarSoyad).HasColumnName("yazarsoyad");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).HasColumnName("yazarno");
+            builder.Property(x => x.Ad).HasColumnName("yazarad");
+            builder.Property(x => x.Soyad).HasColumnName("yazarsoyad");
 
         }
     }

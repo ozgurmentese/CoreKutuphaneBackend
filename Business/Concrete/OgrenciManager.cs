@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class OgrenciManager : IOgrenciServis
+    public class OgrenciManager : IOgrenciService
     {
         IOgrenciDal _ogrenciDal;
         public OgrenciManager(IOgrenciDal ogrenciDal)
@@ -39,9 +39,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Ogrenci>>(_ogrenciDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<List<OgrenciIslemKitapTablolari>> OgrenciAdSoyadKitapGetir()
+        public IDataResult<List<OgrenciIslemKitapTablolariDto>> OgrenciAdSoyadKitapGetir()
         {
-            return new SuccessDataResult<List<OgrenciIslemKitapTablolari>>(_ogrenciDal.OgrenciAdSoyadKitapGetir(), Messages.Listed);
+            return new SuccessDataResult<List<OgrenciIslemKitapTablolariDto>>(_ogrenciDal.OgrenciAdSoyadKitapGetir(), Messages.Listed);
         }
 
         public IDataResult<List<Ogrenci>> OgrenciGetir(string text)

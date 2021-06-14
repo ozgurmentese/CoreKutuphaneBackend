@@ -7,9 +7,12 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public int OgrenciNumarasi { get; set; }
-        public int KitapNumarasi { get; set; }
+        public int KitapId { get; set; }
         public DateTime AlinanTarih { get; set; }
-        public DateTime VerilenTarih { get; set; }
+        public DateTime? VerilenTarih { get; set; }
+        public Islem()
+        {
+            AlinanTarih = DateTime.Now;
+        }
     }
-
 }

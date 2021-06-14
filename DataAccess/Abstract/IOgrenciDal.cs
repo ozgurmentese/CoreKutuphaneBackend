@@ -7,6 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface IOgrenciDal : IEntityRepository<Ogrenci>
     {
-        List<OgrenciIslemKitapTablolari> OgrenciAdSoyadKitapGetir();
+        List<OgrenciIslemKitapTablolariDto> OgrenciAdSoyadKitapGetir();
     }
 }
