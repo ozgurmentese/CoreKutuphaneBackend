@@ -10,9 +10,5 @@ namespace Entities.Concrete
         public int KitapId { get; set; }
         public DateTime AlinanTarih { get; set; }
         public DateTime? VerilenTarih { get; set; }
-        public Islem()
-        {
-            AlinanTarih = DateTime.Now;
-        }
     }
 }

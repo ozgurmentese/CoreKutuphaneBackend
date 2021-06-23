@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -11,12 +13,13 @@ namespace Business.Concrete
 {
     public class YazarManager : IYazarService
     {
-        IYazarDal _yazarDal;
+        readonly IYazarDal _yazarDal;
         public YazarManager(IYazarDal yazarDal)
         {
             _yazarDal = yazarDal;
         }
 
+        [ValidationAspect(typeof(YazarValidator))]
         public IResult Add(Yazar yazar)
         {
             _yazarDal.Add(yazar);
@@ -39,6 +42,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Yazar>> (_yazarDal.GetAll(),Messages.Listed);
         }
 
+        [ValidationAspect(typeof(YazarValidator))]
         public IResult Update(Yazar yazar)
         {
             _yazarDal.Update(yazar);

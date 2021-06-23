@@ -19,16 +19,16 @@ namespace DataAccess.Concrete.EntityFramework
 
             using (KutuphaneContext context = new KutuphaneContext())
             {
-                var result = from o in context.Ogrenciler
-                             join i in context.Islemler
-                             on o.Numarasi equals i.Id
-                             join k in context.Kitaplar
-                             on i.KitapId equals k.Id
+                var result = from ogrenciler in context.Ogrenciler
+                             join islemler in context.Islemler
+                             on ogrenciler.Numarasi equals islemler.Id
+                             join kitaplar in context.Kitaplar
+                             on islemler.KitapId equals kitaplar.Id
                              select new OgrenciIslemKitapTablolariDto
                              {
-                                 Ad = o.Adi,
-                                 SoyAd = o.Soyadi,
-                                 KitapAdi = k.Ad
+                                 Ad = ogrenciler.Adi,
+                                 SoyAd = ogrenciler.Soyadi,
+                                 KitapAdi = kitaplar.Ad
                              };
                 return result.ToList();
             }

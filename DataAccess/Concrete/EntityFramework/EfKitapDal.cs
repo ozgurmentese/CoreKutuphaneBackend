@@ -17,18 +17,18 @@ namespace DataAccess.Concrete.EntityFramework
             //on K.kitapno = I.kitapno
             using (KutuphaneContext context = new KutuphaneContext())
             {
-                var result = from k in context.Kitaplar
-                             join y in context.Yazarlar
-                             on k.YazarId equals y.Id
-                             join t in context.Turler
-                             on k.TurId equals t.Id
+                var result = from kitaplar in context.Kitaplar
+                             join yazarlar in context.Yazarlar
+                             on kitaplar.YazarId equals yazarlar.Id
+                             join turler in context.Turler
+                             on kitaplar.TurId equals turler.Id
                              select new KitapAdYazarTurGetirDto
                              {
-                                 KitapAdi = k.Ad,
-                                 YazarAdi = y.Ad,
-                                 TurAdi = t.Ad,
-                                 TurId = t.Id,
-                                 YazarId = y.Id
+                                 KitapAdi = kitaplar.Ad,
+                                 YazarAdi = yazarlar.Ad,
+                                 TurAdi = turler.Ad,
+                                 TurId = turler.Id,
+                                 YazarId = yazarlar.Id
                              };
                 return result.ToList();
             }

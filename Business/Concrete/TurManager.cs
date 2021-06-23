@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -10,12 +12,13 @@ namespace Business.Concrete
 {
     public class TurManager : ITurService
     {
-        ITurDal _turDal;
+        readonly ITurDal _turDal;
         public TurManager(ITurDal turDal)
         {
             _turDal = turDal;
         }
 
+        [ValidationAspect(typeof(TurValidator))]
         public IResult Add(Tur tur)
         {
             _turDal.Add(tur);
@@ -43,6 +46,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<KitapAdYazarTurGetirDto>>(_turDal.TureGoreGetir2(v), Messages.Listed);
         }
 
+        [ValidationAspect(typeof(TurValidator))]
         public IResult Update(Tur tur)
         {
             _turDal.Update(tur);

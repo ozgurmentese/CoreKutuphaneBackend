@@ -13,7 +13,7 @@ namespace Business.Concrete
 {
     public class OgrenciManager : IOgrenciService
     {
-        IOgrenciDal _ogrenciDal;
+        readonly IOgrenciDal _ogrenciDal;
         public OgrenciManager(IOgrenciDal ogrenciDal)
         {
             _ogrenciDal = ogrenciDal;

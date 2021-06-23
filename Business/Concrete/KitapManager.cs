@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,6 +18,7 @@ namespace Business.Concrete
             _kitapDal = kitapDal;
         }
 
+        [ValidationAspect(typeof(KitapValidator))]
         public IResult Add(Kitap kitap)
         {
             _kitapDal.Add(kitap);
@@ -43,6 +46,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<KitapAdYazarTurGetirDto>>(_kitapDal.KitapYazarTurGetir(), Messages.Listed);
         }
 
+        [ValidationAspect(typeof(KitapValidator))]
         public IResult Update(Kitap kitap)
         {
             _kitapDal.Update(kitap);
