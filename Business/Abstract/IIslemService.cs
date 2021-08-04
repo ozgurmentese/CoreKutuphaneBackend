@@ -13,8 +13,8 @@ namespace Business.Abstract
         IResult Update(Islem islem);
         IResult Delete(Islem islem);
         IResult TutarBelirle(int id);
-        IDataResult<List<KutuphaneKitap>> KutuphanedekiKitaplar();
-        IDataResult<List<KutuphaneKitap>> KutuphanedeOlanKitaplar();
-        IDataResult<List<KutuphaneKitap>> KutuphanedeOlmayanKitaplar();
+        IDataResult<List<KutuphaneKitap>> GetKutuphanedekiKitaplar();
+        IDataResult<List<KutuphaneKitap>> GetKutuphanedeOlanKitaplar();
+        IDataResult<List<KutuphaneKitap>> GetKutuphanedeOlmayanKitaplar();
     }
 }

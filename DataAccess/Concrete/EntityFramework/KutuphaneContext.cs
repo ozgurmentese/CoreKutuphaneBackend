@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.EntityFramework.Mappings;
+﻿using Core.Entities.Concrete;
+using DataAccess.Concrete.EntityFramework.Mappings;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Ogrenci> Ogrenciler { get; set; }
         public DbSet<Yazar> Yazarlar { get; set; }
         public DbSet<Tur> Turler { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

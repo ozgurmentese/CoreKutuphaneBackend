@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet("kutuphanedekikitaplar")]
         public IActionResult KutuphanedekiKitaplar()
         {
-            var result = _islemService.KutuphanedekiKitaplar();
+            var result = _islemService.GetKutuphanedekiKitaplar();
             if (result.Success)
             {
                 return Ok(result);
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         [HttpGet("kutuphanedeolankitaplar")]
         public IActionResult KutuphanedeOlanKitaplar()
         {
-            var result = _islemService.KutuphanedeOlanKitaplar();
+            var result = _islemService.GetKutuphanedeOlanKitaplar();
             if (result.Success)
             {
                 return Ok(result);
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         [HttpGet("kutuphanedeolmayankitaplar")]
         public IActionResult KutuphanedeOlmayanKitaplar()
         {
-            var result = _islemService.KutuphanedeOlmayanKitaplar();
+            var result = _islemService.GetKutuphanedeOlmayanKitaplar();
             if (result.Success)
             {
                 return Ok(result);

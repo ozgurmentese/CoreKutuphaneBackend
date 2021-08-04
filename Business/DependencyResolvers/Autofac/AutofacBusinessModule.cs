@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.Adapters;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
@@ -30,6 +31,8 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<YazarManager>().As<IYazarService>().SingleInstance();
             builder.RegisterType<EfYazarDal>().As<IYazarDal>().SingleInstance();
+
+            builder.RegisterType<PersonServiceManager>().As<IPersonService>().SingleInstance();
 
 
 

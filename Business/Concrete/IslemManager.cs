@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,6 +22,8 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(IslemValidator))]
+        [SecuredOperation("add")]
+        [CacheRemoveAspect("IIslemService.Get")]
         public IResult Add(Islem islem)
         {
             islem.AlinanTarih = DateTime.Now;
@@ -27,42 +31,51 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
+        [SecuredOperation("delete")]
         public IResult Delete(Islem islem)
         {
             _islemDal.Delete(islem);
             return new SuccessResult(Messages.Deleted);
         }
 
+        [SecuredOperation("get")]
         public IDataResult<Islem> Get(int id)
         {
             return new SuccessDataResult<Islem>(_islemDal.Get(i => i.Id == id));
         }
 
+        [SecuredOperation("getall")]
+        [CacheAspect]
         public IDataResult<List<Islem>> GetAll()
         {
 
             return new SuccessDataResult<List<Islem>>(_islemDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<List<KutuphaneKitap>> KutuphanedeOlmayanKitaplar()
+        [SecuredOperation("list")]
+        public IDataResult<List<KutuphaneKitap>> GetKutuphanedeOlmayanKitaplar()
         {
             var result = _islemDal.KutuphaneKitaplar(k => k.VerisTarih == null);
             return new SuccessDataResult<List<KutuphaneKitap>>(result);
         }
 
-        public IDataResult<List<KutuphaneKitap>> KutuphanedeOlanKitaplar()
+        [SecuredOperation("list")]
+        public IDataResult<List<KutuphaneKitap>> GetKutuphanedeOlanKitaplar()
         {
             var result = _islemDal.KutuphaneKitaplar(k => k.VerisTarih != null);
             return new SuccessDataResult<List<KutuphaneKitap>>(result);
         }
 
-        public IDataResult<List<KutuphaneKitap>> KutuphanedekiKitaplar()
+        [SecuredOperation("list")]
+        public IDataResult<List<KutuphaneKitap>> GetKutuphanedekiKitaplar()
         {
             var result = _islemDal.KutuphaneKitaplar();
             return new SuccessDataResult<List<KutuphaneKitap>>(result, Messages.Listed);
         }
 
         [ValidationAspect(typeof(IslemValidator))]
+        [SecuredOperation("update")]
+        [CacheRemoveAspect("IIslemService.Get")]
         public IResult Update(Islem islem)
         {
             _islemDal.Update(islem);
